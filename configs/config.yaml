@@ -1,0 +1,33 @@
+# data parameters=========================================================================
+data_dir: "/home/pi/PycharmProjects/VGG16_tensorflow/data/dog_cat/train_resize"
+num_per_class: 20
+#Note: channel is BGR order. imageNet mean:[103.939, 116.779, 123.68]
+images_mean: [106.18862915,115.9300766,124.40332031]
+batch_size: 1
+is_shuffle: True
+
+# model parameters========================================================================
+is_debug: True
+weight_decay: 0.0
+# initializer: default initializer is tf.random_normal_initializer(mean=0.0, stddev=0.01)
+
+# train parameters========================================================================
+learning_rate: 0.001
+# default learning rate decay policy: exponential decay.
+learning_rate_decay:
+  is_learning_rate_decay: True
+  decay_steps: 5
+  decay_rate: 0.8
+  staircase: True
+# optional optimizer: Adagrad GradientDescent Adam RMSProp
+optimizer: "GradientDescent"
+max_iter: 1000
+snapshot_prefix: "vgg_cat_dog"
+checkpoint_dir: "/home/pi/PycharmProjects/VGG16_tensorflow/experiments/exp1/checkpoints/"
+save_iter: 2
+max_to_keep: 5
+summary_iter: 1
+logdir: "/home/pi/PycharmProjects/VGG16_tensorflow/experiments/exp1/summary/"
+
+
+
