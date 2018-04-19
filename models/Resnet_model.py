@@ -1,0 +1,3 @@
+
+class ResnetModel(object):
+    pass

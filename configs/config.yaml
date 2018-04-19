@@ -1,5 +1,5 @@
 # data parameters=========================================================================
-data_dir: "/home/pi/PycharmProjects/VGG16_tensorflow/data/dog_cat/train_resize"
+data_dir: "/home/pi/PycharmProjects/dog_cat/train_resize"
 num_per_class: 20
 #Note: channel is BGR order. imageNet mean:[103.939, 116.779, 123.68]
 images_mean: [106.18862915,115.9300766,124.40332031]
@@ -23,11 +23,11 @@ learning_rate_decay:
 optimizer: "GradientDescent"
 max_iter: 1000
 snapshot_prefix: "vgg_cat_dog"
-checkpoint_dir: "/home/pi/PycharmProjects/VGG16_tensorflow/experiments/exp1/checkpoints/"
-save_iter: 2
+checkpoint_dir: "/home/pi/PycharmProjects/tensorflow_template/experiments/exp1/checkpoint/"
+save_iter: 1
 max_to_keep: 5
 summary_iter: 1
-logdir: "/home/pi/PycharmProjects/VGG16_tensorflow/experiments/exp1/summary/"
+logdir: "/home/pi/PycharmProjects/tensorflow_template/experiments/exp1/summary"
 
 
 

@@ -1,18 +1,19 @@
 import cPickle
+import numpy as np
 import os
 import random
-
 import cv2
-import numpy as np
-
-
-def read_cifar10_data(file):
-    with open(file, 'rb') as fo:
-        data_dict = cPickle.load(fo)
-    return data_dict
-
 
 def read_data_and_sub_mean(data_dir, img_mean, num_per_class=1000, image_size=[224, 224, 3]):
+    """
+    This function is used to get a data dict. dog label:1 cat label:0
+    :param data_dir: resized images folder path. Note the image's name reveal its label. e.g. dog.54.jpg,cat.7746.jpg
+    :param img_mean: images's mean value, a list, and BGR order. e.g. [106.18862915,115.9300766,124.40332031]
+    :param num_per_class: the number of samples per class you want to use.
+    :param image_size: the image size.
+    :return:A dict, contains the images(numpy array with shape [num_samples,w,h,channels]) and
+            labels(numpy array [num_samples,num_classes], one-hot encoding).
+    """
     print "Begin to read dog and cat data..."
 
     file_names = os.listdir(data_dir)
@@ -65,6 +66,12 @@ def read_data_and_sub_mean(data_dir, img_mean, num_per_class=1000, image_size=[2
 
 
 def resize_image(data_dir, save_dir, resize_shape=(224, 224)):
+    """
+    :param data_dir: original images folder path. Note the image's name reveal its label. e.g. dog.54.jpg,cat.7746.jpg
+    :param save_dir: folder to store resized images .
+    :param resize_shape: what is the shape you want to resize.
+    :return: None. But save resized images in save_dir.
+    """
     print "Begin to resize dog and cat data..."
     file_names = os.listdir(data_dir)
     total_count, cat_count, dog_count = 0, 0, 0
@@ -86,6 +93,12 @@ def resize_image(data_dir, save_dir, resize_shape=(224, 224)):
 
 
 def compute_mean(data_dir, image_size=(224, 224, 3)):
+    """
+    To compute images' mean value.
+    :param data_dir: images folder path.
+    :param image_size: images' size
+    :return: None, but print the mean value on the screen.
+    """
     print "Begin to compute images mean..."
     file_names = os.listdir(data_dir)
     image_sum = np.zeros([224, 224, 3], dtype=np.float32)
@@ -103,7 +116,7 @@ def compute_mean(data_dir, image_size=(224, 224, 3)):
 
 
 if __name__ == '__main__':
-    data_dir = "/home/pi/PycharmProjects/VGG16_tensorflow/data/dog_cat/train"
-    save_dir = "/home/pi/PycharmProjects/VGG16_tensorflow/data/dog_cat/train_resize"
-    # resize_image(data_dir, save_dir)
+    data_dir = "/home/pi/PycharmProjects/tensorflow_template/data/cat_dog"
+    save_dir = "/home/pi/PycharmProjects/tensorflow_template/data/cat_dog_resize"
+    resize_image(data_dir, save_dir)
     compute_mean(save_dir)

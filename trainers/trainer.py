@@ -1,12 +1,9 @@
-import os
-
-import numpy as np
 import tensorflow as tf
-
+import numpy as np
+import os
 from utils.logger import Summary
 
-
-class VGGTrainer(object):
+class Trainer(object):
     def __init__(self, model, data, config):
         self.model = model
         self.data = data
@@ -115,7 +112,7 @@ class VGGTrainer(object):
                 if self.is_learning_rate_decay:
                     learning_rate = self.sess.run(self.learning_rate)
                 else:
-                    learning_rate=self.learning_rate
+                    learning_rate = self.learning_rate
                 print "Epoch:%d, Step:%d/%d, Learning rate:%f, Loss:%.4f, Accuracy:%.4f" % (self.data.epochs_completed,
                                                                                             step,
                                                                                             self.max_iter,
@@ -123,7 +120,7 @@ class VGGTrainer(object):
                                                                                             loss,
                                                                                             acc)
             else:
-                self.sess.run(self.optimizer, feed_dict=feed_dict)
+                self.sess.run(self.train_op, feed_dict=feed_dict)
 
             # save checkpoint
             if (step + 1) % self.save_iter == 0:
