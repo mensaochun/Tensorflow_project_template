@@ -121,7 +121,5 @@ For more details, please go to have a look.
 
 - [ ] Use factory pattern to call specified model.
 
-      ​
-
-
+  
 
